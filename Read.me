@@ -1,0 +1,46 @@
+## Pixomate Api CodeIgniter 4
+
+- En primer lugar debemos introducir los datos de la BD deseada en el archivo /app/config/Database.php.
+ 
+- Para la creación de las tablas requeridas en dicha BD debemos acceder a la consola del servidor, una vez allí
+  debemos dirigirnos a la raíz del proyecto e introducimos el siguiente comando: php spark migrate.
+
+- Si deseamos añadir una compañía de pruebas basta con ejecutar en la consola y directorios anteriormente citados
+  el siguiente comando: php spark db:seed CompanieSeeder.
+
+# Partes realizadas
+  
+  - Misión 1: A, B, C, D.
+  - Reto misión 1: A.
+  - Opinión sobre reto B(Misión 1): Dicho token sigue siendo un valor que podría ser 'expuesto' en BD, si se implementa
+    una autorización con contraseña se añadiría un poco más de seguridad.  
+----------------------------------------------------------------------------------
+  - Misión 2: A, B, C.
+  - Explicación procedimiento reto A(Misión 2, no realizado): Ya que la api a consultar carece de limit y offset en dicho
+    endpoint se deben de recorrer los datos obtenidos, para así determinar cuantos de dicha consulta han de mostrarse o si
+    necesario realizar una segunda, hacia la siguiente pagina, para así completar el numero de resultados deseado.
+----------------------------------------------------------------------------------
+  - Misión 3: A, B.
+  - Aclaracion parte A: Guardo todos los logs posibles que permite codeigniter para despues ser tratados y filtrados en
+    auditorías de sistemas.
+
+# Rutas(Endpoints)
+  - (dot*) es añadido por mi entorno de desarrollo.
+
+  -(GET) pixomate.(dot*)/companies?page=x : Muestra las compañias de 5 en 5 por paginación.
+
+  -(POST) pixomate.dot/companies/create : Mediante un json creamos una empresa.
+
+  -(PATCH) pixomate.dot/companies/update/x : Actualizamos una empresa pasando el parametro x, siendo este el id de dicha empresa.
+
+  -(GET) pixomate.dot/companies/list/xxxx : Buscamos entre las empresas existentes con la descripción igual 'xxxx'.
+
+  -(POST) pixomate.dot/favorites : Mediante un json insertamos como favorito.
+
+  -(GET) pixomate.dot/owners/find/xxx : Obtenemos el usuario y los post relacionados al mismo donde su idea sea 'xxxx',
+         debido al consumo excesivo de recursos en estas peticiones, el usuario que se solicita se guarda (si no existe ya)
+         en una tabla llamada 'owners', los posts son consultados ya que estos varían con mayor frecuencia. 
+
+  Nota: Debido a la generación aleatoria de datos en la api https://gorest.co.in pueden cambiar los parametros a introducir en los json.
+
+
